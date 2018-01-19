@@ -25,3 +25,9 @@ def encrypt():
 def decrypt():
     pass
 
+
+key = Fernet.generate_key()
+f = Fernet(key)
+token = f.encrypt(b"secret")
+print(token)
+print(f.decrypt(token))

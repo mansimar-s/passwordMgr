@@ -69,8 +69,14 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.btn_AddNew.clicked.connect(self.btn_click)
         self.passDict = None
 
-        with open("dict.txt", 'rb+') as f:
-                    self.passDict = pickle.loads(f.read())
+        with open("", 'rb+') as f:
+
+            with open(mysec.txt, "r") as key_f:
+                my_fer_key = key_f.read().strip()
+            fer = Fernet(my_fer_key)
+            token = fer.decrypt(f.read())
+
+            self.passDict = pickle.loads(token)
 
         self.CB_Delete.addItems(sorted(self.passDict.keys()))
         self.CB_View.addItems(sorted(self.passDict.keys()))
