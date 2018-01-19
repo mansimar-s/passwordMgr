@@ -71,13 +71,14 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.btn_AddNew.clicked.connect(self.btn_click)
         self.passDict = None
 
+
+
+        my_fer_key = security.make_ferKey(myPass)
+        self.fer = Fernet(my_fer_key)
         with open("dict_temp.txt", 'rb+') as f:
+            token = self.fer.decrypt(f.read())
 
-            my_fer_key = security.make_ferKey(myPass)
-            fer = Fernet(my_fer_key)
-            token = fer.decrypt(f.read())
-
-            self.passDict = pickle.loads(token)
+        self.passDict = pickle.loads(token)
 
         self.CB_Delete.addItems(sorted(self.passDict.keys()))
         self.CB_View.addItems(sorted(self.passDict.keys()))
@@ -114,10 +115,10 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
             self.DisplayWin = displayWin(self.details)
             self.DisplayWin.show()
-        with open('dict.txt', 'wb') as f:
+        with open('dict_temp.txt', 'wb') as f:
             f.seek(0)
             f.truncate()
-            to_write_data = fer.encrypt(pickle.dumps(self.passDict))
+            to_write_data = self.fer.encrypt(pickle.dumps(self.passDict))
 
             f.write(to_write_data)
 
