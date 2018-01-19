@@ -1,3 +1,4 @@
+import pickle
 from cryptography.fernet import Fernet
 import hashlib, base64
 
@@ -21,30 +22,25 @@ def make_ferKey(s):
     return key64
 
 
-
-
-
+def maketest():
+    d = {"a":"b", "c":"d"}
+    fer = Fernet(make_ferKey("abcd"))
+    token = fer.encrypt(pickle.dumps(d))
+    with open("dict_temp.txt", "wb") as f:
+        f.write(token)
 
 """
-Have to make a temporary dict, pickle it, encrypt it using the same fernet
-and write it to dict_temp.txt
-Then in main.py it will be decrypted by the source code
+
+any hash stored in files needs to be encrypted by rsa
+
+public key can be stored along with passict and private key can be the password
+provided by the user
+
+check online on standard method
+
 """
 
-
-
-
-def encrypt():
-    """
-    Takes the pickled password database and encrypts it using fernet method.
-    Will require reading the AES key.
-    """
-    pass
-
-
-def decrypt():
-    pass
-
+#maketest()
 
 
 

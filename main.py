@@ -71,10 +71,9 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.btn_AddNew.clicked.connect(self.btn_click)
         self.passDict = None
 
-        with open("dict.txt", 'rb+') as f:
+        with open("dict_temp.txt", 'rb+') as f:
 
             my_fer_key = security.make_ferKey(myPass)
-            print(my_fer_key)
             fer = Fernet(my_fer_key)
             token = fer.decrypt(f.read())
 
