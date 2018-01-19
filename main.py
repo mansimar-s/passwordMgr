@@ -23,6 +23,7 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 
         self.PB_login.clicked.connect(self.btn_click)
         self.LE_MasterPass.returnPressed.connect(self.btn_click)
+        self.centeronScreen()
 
     def btn_click(self):
         with open("mysec.txt", 'r') as f:
@@ -38,6 +39,16 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
                 self.InvalidBox.setText("Password is Invalid")
                 self.InvalidBox.exec_()
 
+    def centeronScreen(self):
+        """
+        Gets the screen resolution and centers the window accorging to it.
+        """
+
+        resolution = QtWidgets.QDesktopWidget().screenGeometry()
+
+        self.move(((resolution.width() / 2) - (self.frameSize().width() / 2)),
+        ((resolution.height() / 2 ) - (self.frameSize().height() /2)))
+
 
 
 class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
@@ -51,6 +62,7 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.centeronScreen()
 
         self.btn_Delete.clicked.connect(self.btn_click)
         self.commandLinkButton.clicked.connect(self.btn_click)
@@ -106,6 +118,17 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.CB_Delete.addItems(sorted(self.passDict.keys()))
         self.CB_View.addItems(sorted(self.passDict.keys()))
 
+    def centeronScreen(self):
+
+        """
+        Gets the screen resolution and centers the window accorging to it.
+        """
+
+        resolution = QtWidgets.QDesktopWidget().screenGeometry()
+        self.move(((resolution.width() / 2) - (self.frameSize().width() / 2)),
+        ((resolution.height() / 2 ) - (self.frameSize().height() /2)))
+
+
 
 
 class displayWin(QDialog, display.Ui_Dialog):
@@ -113,6 +136,7 @@ class displayWin(QDialog, display.Ui_Dialog):
     def __init__(self, d):
         QDialog.__init__(self)
         self.setupUi(self)
+        self.centeronScreen()
         self.d = d
 
         self.PB_Copy.clicked.connect(self.copyXsel)
@@ -138,6 +162,19 @@ class displayWin(QDialog, display.Ui_Dialog):
             self.LE_Password.setEchoMode(QtWidgets.QLineEdit.Password)
         else:
             self.LE_Password.setEchoMode(QtWidgets.QLineEdit.Normal)
+
+
+    def centeronScreen(self):
+        """
+        Gets the screen resolution and centers the window accorging to it.
+        """
+
+
+        resolution = QtWidgets.QDesktopWidget().screenGeometry()
+        self.move(((resolution.width() / 2) - (self.frameSize().width() / 2)),
+        ((resolution.height() / 2 ) - (self.frameSize().height() /2)))
+
+
 
 
 
