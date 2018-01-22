@@ -3,8 +3,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QDialog
 import login, mainWindow
 import pickle
+import base64
 import security
 import display
+from cryptography.fernet import Fernet
 from subprocess import Popen, PIPE
 
 
@@ -26,12 +28,12 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
         self.centeronScreen()
 
     def btn_click(self):
-        with open("mysec.txt", 'r') as f:
+        with open("mysec.txt", 'rb') as f:
 
-            if security.myHash(self.LE_MasterPass.text()) == f.read().strip():
+            if security.myHash(self.LE_MasterPass.text()) == f.read():
 
                 self.close()
-                self.mainWin = pass_mainWin()
+                self.mainWin = pass_mainWin(self.LE_MasterPass.text())
                 self.mainWin.show()
             else:
                 self.LE_MasterPass.setText(None)
@@ -54,11 +56,11 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
     """
-    Class for interacting with the main window of the application. 
+    Class for interacting with the main window of the application.
     Inherits from QMainWindow and inherits UI from the mainWindow module
     """
 
-    def __init__(self):
+    def __init__(self, myPass):
 
         QMainWindow.__init__(self)
         self.setupUi(self)
@@ -69,8 +71,14 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.btn_AddNew.clicked.connect(self.btn_click)
         self.passDict = None
 
-        with open("dict.txt", 'rb+') as f:
-                    self.passDict = pickle.loads(f.read())
+
+
+        my_fer_key = security.make_ferKey(myPass)
+        self.fer = Fernet(my_fer_key)
+        with open("dict_temp.txt", 'rb+') as f:
+            token = self.fer.decrypt(f.read())
+
+        self.passDict = pickle.loads(token)
 
         self.CB_Delete.addItems(sorted(self.passDict.keys()))
         self.CB_View.addItems(sorted(self.passDict.keys()))
@@ -107,11 +115,18 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
             self.DisplayWin = displayWin(self.details)
             self.DisplayWin.show()
-        with open('dict.txt', 'wb') as f:
+
+        #
+        # Writing to the database file after updation of entries
+        #
+
+        with open('dict_temp.txt', 'wb') as f:
             f.seek(0)
             f.truncate()
+            to_write_data = self.fer.encrypt(pickle.dumps(self.passDict))
 
-            f.write(pickle.dumps(self.passDict))
+            f.write(to_write_data)
+
 
         self.CB_Delete.clear()
         self.CB_View.clear()
