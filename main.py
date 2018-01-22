@@ -56,7 +56,7 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
     """
-    Class for interacting with the main window of the application. 
+    Class for interacting with the main window of the application.
     Inherits from QMainWindow and inherits UI from the mainWindow module
     """
 
@@ -115,12 +115,18 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
             self.DisplayWin = displayWin(self.details)
             self.DisplayWin.show()
+
+        #
+        # Writing to the database file after updation of entries
+        #
+
         with open('dict_temp.txt', 'wb') as f:
             f.seek(0)
             f.truncate()
             to_write_data = self.fer.encrypt(pickle.dumps(self.passDict))
 
             f.write(to_write_data)
+
 
         self.CB_Delete.clear()
         self.CB_View.clear()
