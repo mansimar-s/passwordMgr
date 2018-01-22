@@ -4,5 +4,5 @@ dict.txt
 *.ui
 mysec.txt
 Pass_Database.bin
-dict_temp.txt
+pass_dictMain.txt
 Pass_Database_Builder.py
