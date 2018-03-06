@@ -13,10 +13,10 @@ from subprocess import Popen, PIPE
 class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 
     """
-    Class for adding interaction ability to the login window of
-    the application.
-    Inherits from QMainWindow and
-    inherits UI from the login module
+        Class for adding interaction ability to the login window of the
+        application.
+        Inherits from QMainWindow and
+        inherits UI from the login module
     """
 
     def __init__(self):
@@ -43,7 +43,7 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 
     def centeronScreen(self):
         """
-        Gets the screen resolution and centers the window accorging to it.
+            Gets the screen resolution and centers the window accorging to it.
         """
 
         resolution = QtWidgets.QDesktopWidget().screenGeometry()
@@ -56,8 +56,8 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
 class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
     """
-    Class for interacting with the main window of the application.
-    Inherits from QMainWindow and inherits UI from the mainWindow module
+        Class for interacting with the main window of the application.
+        Inherits from QMainWindow and inherits UI from the mainWindow module
     """
 
     def __init__(self, myPass):
