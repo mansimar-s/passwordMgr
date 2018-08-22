@@ -85,8 +85,8 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
     def btn_click(self):
         """
-        Adds the main functionality of the app for deleting, adding, and
-        viewing stored entries
+            Adds the main functionality of the app for deleting, adding, and
+            viewing stored entries
         """
         button = self.sender()
 
@@ -102,6 +102,8 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
             self.LE_AddServ.setText(None)
             self.LE_AddUser.setText(None)
             self.LE_AddPass.setText(None)
+
+            # Message box for displaying password added
             self.AddBox = QtWidgets.QMessageBox()
             self.AddBox.setText("Password Entry Added Successfully.")
             self.AddBox.exec_()
@@ -136,7 +138,7 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
     def centeronScreen(self):
 
         """
-        Gets the screen resolution and centers the window accorging to it.
+            Gets the screen resolution and centers the window accorging to it.
         """
 
         resolution = QtWidgets.QDesktopWidget().screenGeometry()
@@ -147,6 +149,11 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
 
 
 class displayWin(QDialog, display.Ui_Dialog):
+
+    """
+        Class for the password display window
+        Inherits from QDialog and gets UI from display.py
+    """
 
     def __init__(self, d):
         QDialog.__init__(self)
