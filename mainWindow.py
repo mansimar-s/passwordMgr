@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -86,6 +86,13 @@ class Ui_mainWindow(object):
 
         self.retranslateUi(mainWindow)
         QtCore.QMetaObject.connectSlotsByName(mainWindow)
+        mainWindow.setTabOrder(self.CB_View, self.commandLinkButton)
+        mainWindow.setTabOrder(self.commandLinkButton, self.LE_AddServ)
+        mainWindow.setTabOrder(self.LE_AddServ, self.LE_AddUser)
+        mainWindow.setTabOrder(self.LE_AddUser, self.LE_AddPass)
+        mainWindow.setTabOrder(self.LE_AddPass, self.btn_AddNew)
+        mainWindow.setTabOrder(self.btn_AddNew, self.CB_Delete)
+        mainWindow.setTabOrder(self.CB_Delete, self.btn_Delete)
 
     def retranslateUi(self, mainWindow):
         _translate = QtCore.QCoreApplication.translate
