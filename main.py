@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.Qt import QApplication
 from PyQt5.QtWidgets import QMainWindow, QDialog
 import login, mainWindow
 import pickle
@@ -7,7 +8,6 @@ import base64
 import security
 import display
 from cryptography.fernet import Fernet
-from subprocess import Popen, PIPE
 
 
 class pass_loginWin(QMainWindow, login.Ui_MainWindow):
@@ -161,7 +161,7 @@ class displayWin(QDialog, display.Ui_Dialog):
         self.centeronScreen()
         self.d = d
 
-        self.PB_Copy.clicked.connect(self.copyXsel)
+        self.PB_Copy.clicked.connect(self.copyPass)
         self.PB_ClearClip.clicked.connect(self.clearclip)
         self.LE_Username.setText(d[0])
         self.LE_Password.setText(d[1])
@@ -169,15 +169,15 @@ class displayWin(QDialog, display.Ui_Dialog):
         self.label_copied.hide()
         self.checkBox.stateChanged.connect(self.checked)
 
-    def copyXsel(self):
-        p = Popen(['xsel', '-b', '-i'], stdin=PIPE, universal_newlines=True)
-        p.communicate(self.LE_Password.text())
-        self.label_copied.show()
+    def copyPass(self):
+        cb = QApplication.clipboard()
+        cb.setText(self.LE_Password.text())
+
 
     def clearclip(self):
 
-        p = Popen(['xsel', '-b', '-c'])
-        p.communicate()
+        cb.clear()
+
 
     def checked(self, state):
         if state == 0:
