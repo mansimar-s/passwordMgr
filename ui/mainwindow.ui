@@ -32,170 +32,172 @@
    <string>Password Manager v1.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupView">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>9</y>
-      <width>431</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>View Password</string>
-    </property>
-    <widget class="QLabel" name="label_select">
-     <property name="geometry">
-      <rect>
-       <x>12</x>
-       <y>30</y>
-       <width>86</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Select Service</string>
-     </property>
-    </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButton">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>100</y>
-       <width>81</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Go</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="CB_View">
-     <property name="geometry">
-      <rect>
-       <x>12</x>
-       <y>64</y>
-       <width>211</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="insertPolicy">
-      <enum>QComboBox::InsertAlphabetically</enum>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupAdd">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>150</y>
-      <width>441</width>
-      <height>123</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Add New Password</string>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_AddEnterServ">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupView">
+      <property name="title">
+       <string>View Password</string>
+      </property>
+      <widget class="QLabel" name="label_select">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>30</y>
+         <width>86</width>
+         <height>16</height>
+        </rect>
+       </property>
        <property name="text">
-        <string>Enter Service Name</string>
+        <string>Select Service</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="LE_AddServ"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_AddUser">
+      <widget class="QCommandLinkButton" name="commandLinkButton">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>100</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
        <property name="text">
-        <string>Enter Username</string>
+        <string>Go</string>
        </property>
       </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="LE_AddUser">
-       <property name="echoMode">
-        <enum>QLineEdit::Normal</enum>
+      <widget class="QComboBox" name="CB_View">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>64</y>
+         <width>211</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAlphabetically</enum>
        </property>
       </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QPushButton" name="btn_AddNew">
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupAdd">
+      <property name="title">
+       <string>Add New Password</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_AddEnterServ">
+         <property name="text">
+          <string>Enter Service Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="LE_AddServ"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_AddUser">
+         <property name="text">
+          <string>Enter Username</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="LE_AddUser">
+         <property name="echoMode">
+          <enum>QLineEdit::Normal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="btn_AddNew">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="LE_AddPass">
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_AddEnterPass">
+         <property name="text">
+          <string>Enter Password</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupDelete">
+      <property name="title">
+       <string>Delete Password  </string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <widget class="QLabel" name="labelDlt_EnterServ">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>30</y>
+         <width>125</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
-        <string>Add</string>
+        <string>Select Service Name</string>
        </property>
       </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="LE_AddPass">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+      <widget class="QPushButton" name="btn_Delete">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>60</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
        </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_AddEnterPass">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
-        <string>Enter Password</string>
+        <string>Delete</string>
        </property>
       </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QGroupBox" name="groupDelete">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>441</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Delete Password  </string>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <widget class="QLabel" name="labelDlt_EnterServ">
-     <property name="geometry">
-      <rect>
-       <x>12</x>
-       <y>30</y>
-       <width>125</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Select Service Name</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_Delete">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>100</y>
-       <width>80</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Delete</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="CB_Delete">
-     <property name="geometry">
-      <rect>
-       <x>143</x>
-       <y>30</y>
-       <width>201</width>
-       <height>23</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
+      <widget class="QComboBox" name="CB_Delete">
+       <property name="geometry">
+        <rect>
+         <x>143</x>
+         <y>30</y>
+         <width>201</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

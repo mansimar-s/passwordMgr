@@ -23,11 +23,13 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
 
-        self.PB_login.clicked.connect(self.btn_click)
-        self.LE_MasterPass.returnPressed.connect(self.btn_click)
+        self.PB_login.clicked.connect(self.btn_click_login)
+        self.LE_MasterPass.returnPressed.connect(self.btn_click_login)
+        self.PB_changePass.clicked.connect(self.btn_click_changePass)
         self.centeronScreen()
 
-    def btn_click(self):
+    def btn_click_login(self):
+
         with open("mysec.txt", 'rb') as f:
 
             if security.myHash(self.LE_MasterPass.text()) == f.read():
@@ -40,6 +42,39 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
                 self.InvalidBox = QtWidgets.QMessageBox()
                 self.InvalidBox.setText("Password is Invalid")
                 self.InvalidBox.exec_()
+
+    def btn_click_changePass(self):
+
+        with open('mysec.txt', 'rb') as f:
+
+            if security.myHash(self.LE_currentPass.text()) == f.read():
+
+                if self.LE_newPass.text() == self.LE_newPassVerification.text():
+
+                    security.changePass(self.LE_newPass.text())
+                    self.successBox = QtWidgets.QMessageBox()
+                    self.successBox.setText("Password changed successfully!")
+                    self.successBox.exec_()
+                    self.LE_currentPass.clear()
+                    self.LE_newPass.clear()
+                    self.LE_newPassVerification.clear()
+
+                else:
+                    self.ErrorBox = QtWidgets.QMessageBox()
+                    self.ErrorBox.setText("The passwords entered do not match.")
+                    self.ErrorBox.exec_()
+                    self.LE_currentPass.clear()
+                    self.LE_newPass.clear()
+                    self.LE_newPassVerification.clear()
+
+
+            else:
+                self.ErrorBox = QtWidgets.QMessageBox()
+                self.ErrorBox.setText("Old Password Incorrect")
+                self.ErrorBox.exec_()
+                self.LE_currentPass.clear()
+                self.LE_newPass.clear()
+                self.LE_newPassVerification.clear()
 
     def centeronScreen(self):
         """
@@ -72,11 +107,20 @@ class pass_mainWin(QMainWindow, mainWindow.Ui_mainWindow):
         self.passDict = None
 
 
-
-        my_fer_key = security.make_ferKey(myPass)
+        # I am changin this line
+        # ================================================================
+        my_fer_key = security.make_ferKey("abcd")
+        #my_fer_key = security.make_ferKey(myPass)
         self.fer = Fernet(my_fer_key)
         with open("pass_dictMain.txt", 'rb+') as f:
-            token = self.fer.decrypt(f.read())
+
+            try:
+                token = self.fer.decrypt(f.read())
+            except:
+                self.ErrorWindow = QtWidgets.QMessageBox()
+                self.ErrorWindow.setText("Decryption Failed")
+                self.ErrorWindow.exec_()
+                return
 
         self.passDict = pickle.loads(token)
 
