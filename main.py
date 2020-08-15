@@ -22,6 +22,7 @@ class pass_loginWin(QMainWindow, login.Ui_MainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setupUi(self)
+        self.LE_MasterPass.setFocus()
 
         self.PB_login.clicked.connect(self.btn_click_login)
         self.LE_MasterPass.returnPressed.connect(self.btn_click_login)

@@ -48,6 +48,9 @@
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
         </property>
+        <property name="cursorPosition">
+         <number>0</number>
+        </property>
         <property name="clearButtonEnabled">
          <bool>true</bool>
         </property>

@@ -27,6 +27,7 @@ class Ui_MainWindow(object):
         self.LE_MasterPass.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.LE_MasterPass.setStyleSheet("color: rgb(255, 255, 255);")
         self.LE_MasterPass.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.LE_MasterPass.setCursorPosition(0)
         self.LE_MasterPass.setClearButtonEnabled(True)
         self.LE_MasterPass.setObjectName("LE_MasterPass")
         self.PB_login = QtWidgets.QPushButton(self.tab)
