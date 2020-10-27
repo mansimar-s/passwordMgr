@@ -1,2 +1,2 @@
-cryptography==2.2.2
+cryptography==3.2
 PyQt5==5.12.1
